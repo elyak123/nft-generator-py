@@ -1,2 +1,7 @@
 .python-version
 workspace.code-workspace
+metadata/
+images/
+trait-layers/
+__pycache__/
+.DS_Store

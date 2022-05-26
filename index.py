@@ -1,10 +1,11 @@
-from IPython.display import display 
-from PIL import Image
-import random
 import json
 import os
+import random
 
-os.system('cls' if os.name=='nt' else 'clear')
+from IPython.display import display
+from PIL import Image
+
+# os.system('cls' if os.name=='nt' else 'clear')
 
 def create_new_image(all_images, config):
     new_image = {}
@@ -23,13 +24,13 @@ def create_new_image(all_images, config):
 
 def generate_unique_images(amount, config):
   print("Generating {} unique NFTs...".format(amount))
-  pad_amount = len(str(amount));
+  pad_amount = len(str(amount))
   trait_files = {
   }
   for trait in config["layers"]:
     trait_files[trait["name"]] = {}
     for x, key in enumerate(trait["values"]):
-      trait_files[trait["name"]][key] = trait["filename"][x];
+      trait_files[trait["name"]][key] = trait["filename"][x]
   
   all_images = []
   for i in range(amount): 
@@ -60,11 +61,14 @@ def generate_unique_images(amount, config):
     json.dump(all_images, outfile, indent=4)
   
   for item in all_images:
-    layers = [];
+    layers = []
     for index, attr in enumerate(item):
       if attr != 'tokenId':
         layers.append([])
-        layers[index] = Image.open(f'{config["layers"][index]["trait_path"]}/{trait_files[attr][item[attr]]}.png').convert('RGBA')
+        try:
+          layers[index] = Image.open(f'{config["layers"][index]["trait_path"]}/{trait_files[attr][item[attr]]}.png').convert('RGBA')
+        except FileNotFoundError:
+          layers[index] = Image.open(f'{config["layers"][index]["trait_path"]}/{trait_files[attr][item[attr]]}.jpg').convert('RGBA')
 
     if len(layers) == 1:
       rgb_im = layers[0].convert('RGB')
@@ -80,13 +84,21 @@ def generate_unique_images(amount, config):
       layers.pop(0)
       layers.pop(0)
       for index, remaining in enumerate(layers):
-        main_composite = Image.alpha_composite(main_composite, remaining)
+        try:
+          main_composite = Image.alpha_composite(main_composite, remaining)
+        except Exception as e:
+          import pdb; pdb.set_trace()
+          raise e
       rgb_im = main_composite.convert('RGB')
       file_name = str(item["tokenId"]) + ".png"
       rgb_im.save("./images/" + file_name)
   
   # v1.0.2 addition
   print("\nUnique NFT's generated. After uploading images to IPFS, please paste the CID below.\nYou may hit ENTER or CTRL+C to quit.")
+
+  # AQUI!!! subimos a IPFS
+
+
   cid = input("IPFS Image CID (): ")
   if len(cid) > 0:
     if not cid.startswith("ipfs://"):
@@ -100,41 +112,41 @@ def generate_unique_images(amount, config):
         with open('./metadata/' + str(item["tokenId"]) + '.json', 'w') as outfile:
           json.dump(original_json, outfile, indent=4)
 
-generate_unique_images(11, {
-  "layers": [
-    {
-      "name": "Background",
-      "values": ["Blue", "Orange", "Purple", "Red", "Yellow"],
-      "trait_path": "./trait-layers/backgrounds",
-      "filename": ["blue", "orange", "purple", "red", "yellow"],
-      "weights": [20,20,20,20,20]
-    },
-    {
-      "name": "Foreground",
-      "values": ["Python Logo", "Python Logo 32"],
-      "trait_path": "./trait-layers/foreground",
-      "filename": ["logo", "logo"],
-      "weights": [50, 50]
-    },
-    {
-      "name": "Branding",
-      "values": ["A Name", "Another Name"],
-      "trait_path": "./trait-layers/text",
-      "filename": ["text", "text"],
-      "weights": [50, 50]
-    }
-  ],
-  "incompatibilities": [
-    {
-      "layer": "Background",
-      "value": "Blue",
-      "incompatible_with": ["Python Logo 2"]
-    },  #  @dev : Blue backgrounds will never have the attribute "Python Logo 2".
-  ],
-  "baseURI": ".",
-  "name": "NFT #",
-  "description": "This is a description for this NFT series."
-})
+# generate_unique_images(11, {
+#   "layers": [
+#     {
+#       "name": "Background",
+#       "values": ["Blue", "Orange", "Purple", "Red", "Yellow"],
+#       "trait_path": "./trait-layers/backgrounds",
+#       "filename": ["blue", "orange", "purple", "red", "yellow"],
+#       "weights": [20,20,20,20,20]
+#     },
+#     {
+#       "name": "Foreground",
+#       "values": ["Python Logo", "Python Logo 32"],
+#       "trait_path": "./trait-layers/foreground",
+#       "filename": ["logo", "logo"],
+#       "weights": [50, 50]
+#     },
+#     {
+#       "name": "Branding",
+#       "values": ["A Name", "Another Name"],
+#       "trait_path": "./trait-layers/text",
+#       "filename": ["text", "text"],
+#       "weights": [50, 50]
+#     }
+#   ],
+#   "incompatibilities": [
+#     {
+#       "layer": "Background",
+#       "value": "Blue",
+#       "incompatible_with": ["Python Logo 2"]
+#     },  #  @dev : Blue backgrounds will never have the attribute "Python Logo 2".
+#   ],
+#   "baseURI": ".",
+#   "name": "NFT #",
+#   "description": "This is a description for this NFT series."
+# })
 
 #Additional layer objects can be added following the above formats. They will automatically be composed along with the rest of the layers as long as they are the same size as eachother.
 #Objects are layered starting from 0 and increasing, meaning the front layer will be the last object. (Branding)
