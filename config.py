@@ -1,13 +1,13 @@
 config = {
   "layers": [
     {
-      "name": "01 Background",
+      "name": "Background",
       "values": [
-          "Back_7", "Back_8", "Back_9", "Back_10", "Back_11",
+          "Blueberry", "Glow", "Teal", "Light_Pumkin", "Pond Green",
         ],
       "trait_path": "./trait-layers/01 Background",
       "filename": [
-          "Back_7", "Back_8", "Back_9", "Back_10", "Back_11",
+        "Blueberry", "Glow", "Teal", "Light_Pumkin", "Pond Green",
         ],
       "weights": [
         20, 20, 20, 20, 20
@@ -16,72 +16,72 @@ config = {
     {
       "name": "Base",
       "values": [
-        "Main_cafe-01_nuevo", "Main_gris-01_nuevo"
+        "Dark_Brown", "Main_Gray"
       ],
       "trait_path": "./trait-layers/02 Base",
       "filename": [
-        "Main_cafe-01_nuevo", "Main_gris-01_nuevo"
+        "Dark_Brown", "Main_Gray"
       ],
       "weights": [50, 50]
     },
     {
-      "name": "03 Mouths",
+      "name": "Mouths",
       "values": [
-        "Boca_cafe_cerrada", "Boca_cafe", "Boca_gris_cerrada", "Boca_gris",
+        "Crazy_Gray", "Crazy_Light", "Cyber_Mounth", "Gray_Serious", "Gray_Smile", "Light_Serious", "Light_Smile", "Zombie_Mouth"
       ],
       "trait_path": "./trait-layers/03 Mouths",
       "filename": [
-        "Boca_cafe_cerrada", "Boca_cafe", "Boca_gris_cerrada", "Boca_gris",
+        "Crazy_Gray", "Crazy_Light", "Cyber_Mounth", "Gray_Serious", "Gray_Smile", "Light_Serious", "Light_Smile", "Zombie_Mouth"
       ],
-      "weights": [25, 25, 25, 25]
+      "weights": [10, 10, 5, 20, 15, 20, 15, 5]
     },
     {
-      "name": "04 Eyes",
+      "name": "Eyes",
       "values": [
-        "Ojos_cafes-01", "Ojos_gris-01"
+        "Brown_Eyes", "Gray_Eyes"
       ],
       "trait_path": "./trait-layers/04 Eyes",
       "filename": [
-        "Ojos_cafes-01", "Ojos_gris-01"
+        "Brown_Eyes", "Gray_Eyes"
       ],
       "weights": [
         50, 50,
       ]
     },
     {
-      "name": "05 Glasses",
+      "name": "Glasses",
       "values": [
-        "Black-Glasses-Transparent", "Black-Glasses-Yellow", "Black-Glasses",
+        "Black_Shades", "Crazy Eyes", "Diamond_Eyes", "Geek_Glases", "Golden_Shades", "Laser_Eyes", "Monocle_Eyes", "No_Glasses", "Virtual_Reality"
       ],
       "trait_path": "./trait-layers/05 Glasses",
       "filename": [
-        "Black-Glasses-Transparent", "Black-Glasses-Yellow", "Black-Glasses",
+        "Black_Shades", "Crazy Eyes", "Diamond_Eyes", "Geek_Glases", "Golden_Shades", "Laser_Eyes", "Monocle_Eyes", "No_Glasses", "Virtual_Reality"
       ],
       "weights": [
-        10, 10, 10,
+        12, 12, 12, 12, 12, 10, 10, 10, 10,
       ]
     },
     {
-      "name": "06 Hats",
+      "name": "Hats",
       "values": [
-        "Cap_1", "Cap_2", "HeadPhones_Beat",
+        "Baseball_Black", "Baseball_Blue", "Black_Headphones", "Bucket_Hat_Black", "Cowboy_Hat", "Edgy_Hat_Black", "Edgy_Hat_Pink", "Pink_Headphones", "World_War_Helmet"
       ],
       "trait_path": "./trait-layers/06 Hats",
       "filename": [
-        "Cap_1", "Cap_2", "HeadPhones_Beat",
+        "Baseball_Black", "Baseball_Blue", "Black_Headphones", "Bucket_Hat_Black", "Cowboy_Hat", "Edgy_Hat_Black", "Edgy_Hat_Pink", "Pink_Headphones", "World_War_Helmet"
       ],
-      "weights": [33, 33, 34]
+      "weights": [12, 12, 12, 12, 12, 10, 10, 10, 10,]
     },
     {
-      "name": "07 T-Shirts",
+      "name": "T-Shirts",
       "values": [
-        "Hoddie_1", "TShirt_flowers_2", "TShirt_flowers", "TShirt_RayasMarinero_azul",
+        "Bathrobe_Black", "Bathrobe_Gray", "Biker_Jacket_Black", "Biker_Jacket_Brown", "Blue_Baseball_T", "Flowers_T_Dark", "Flowers_T_Light", "Formal_Jacket_Gray", "Hoodie_Hat_Black", "Regular_T_Black", "Squares_Jacket_Blue", "Stripes_Blue_White", "Stripes_DarkBlue_White", "Swat_Vest"
         ],
       "trait_path": "./trait-layers/07 T-Shirts",
       "filename": [
-        "Hoddie_1", "TShirt_flowers_2", "TShirt_flowers", "TShirt_RayasMarinero_azul",
+        "Bathrobe_Black", "Bathrobe_Gray", "Biker_Jacket_Black", "Biker_Jacket_Brown", "Blue_Baseball_T", "Flowers_T_Dark", "Flowers_T_Light", "Formal_Jacket_Gray", "Hoodie_Hat_Black", "Regular_T_Black", "Squares_Jacket_Blue", "Stripes_Blue_White", "Stripes_DarkBlue_White", "Swat_Vest"
       ],
-      "weights": [16, 16, 16, 16,]
+      "weights": [8, 8, 7, 7,7, 7, 7, 7,7, 7, 7, 7,]
     },
   ],
   "incompatibilities": [
